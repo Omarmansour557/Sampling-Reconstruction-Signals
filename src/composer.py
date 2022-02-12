@@ -6,13 +6,12 @@ from PyQt5 import QtWidgets as qtw
 from PyQt5 import uic
 from sinusoidals import Sinusoidal
 import pyqtgraph as pg
-from pyqtgraph import PlotWidget, plot
 import numpy as np
-
 
 
 class Composer(qtw.QWidget):
     moving_data_to_sampler = qtc.pyqtSignal(list, list, float)
+
     def __init__(self):
         super().__init__()
         self.time = np.linspace(0, 3, 1000)
@@ -20,6 +19,7 @@ class Composer(qtw.QWidget):
         self.list_of_sinusoidals = []
         self.array_of_lines = []
         uic.loadUi("src/ui/Composer.ui", self)
+
         self.component_graph = pg.PlotWidget()
         self.component_graph.setXRange(-0.2, 3)
 
@@ -42,23 +42,18 @@ class Composer(qtw.QWidget):
         index_of_example = self.SavedExList.currentIndex()
         current_composed_signal = self.saved_example[index_of_example]
         fmax = self.getFmax(self.time, current_composed_signal)
-        self.moving_data_to_sampler.emit(self.time.tolist(), current_composed_signal.tolist(), fmax)
-
+        self.moving_data_to_sampler.emit(
+            self.time.tolist(), current_composed_signal.tolist(), fmax)
 
     def getFmax(self, time, data):
         amplitude = np.fft.rfft(data)
         frequency = np.fft.rfftfreq(len(data), (time[1] - time[0]))
 
-        fmax=0
+        fmax = 0
         for i, a in enumerate(amplitude):
-            if np.abs(a) > 5 : # (1)
+            if np.abs(a) > 5:  # (1)
                 fmax = frequency[i]
         return fmax
-
-
-
-
-
 
     def addSinWave(self):
         amp = self.AmplitudeSpinBox.value()

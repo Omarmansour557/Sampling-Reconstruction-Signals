@@ -6,20 +6,16 @@ import sys
 from page import Page
 
 
-
 class MainWindow(qtw.QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("src/ui/MainWindow.ui", self)
+
         self.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
         self.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+
         self.view_page = Page()
         self.centralWidget().layout().addWidget(self.view_page)
-        
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -27,11 +23,3 @@ if __name__ == '__main__':
     main = MainWindow()
     main.show()
     sys.exit(app.exec_())
-            
-
-
-        
-
-
-        
-

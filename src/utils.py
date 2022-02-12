@@ -7,7 +7,6 @@ def isCsv(path):
     file_name = path.split(os.path.sep)[-1]
     return file_name.find(".csv") != -1
 
-
 def open_csv(window):
     path, _= qtw.QFileDialog.getOpenFileName(window, 'Open File')
     return loadCsv(path)

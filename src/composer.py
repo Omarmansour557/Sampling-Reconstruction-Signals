@@ -39,11 +39,12 @@ class Composer(qtw.QWidget):
         self.SavedExList.addItem(f'Example: {len(self.saved_example)}')
 
     def startSampling(self):
-        index_of_example = self.SavedExList.currentIndex()
-        current_composed_signal = self.saved_example[index_of_example]
-        fmax = self.getFmax(self.time, current_composed_signal)
-        self.moving_data_to_sampler.emit(
-            self.time.tolist(), current_composed_signal.tolist(), fmax)
+        if(self.SavedExList.count() > 0):
+            index_of_example = self.SavedExList.currentIndex()
+            current_composed_signal = self.saved_example[index_of_example]
+            fmax = self.getFmax(self.time, current_composed_signal)
+            self.moving_data_to_sampler.emit(
+                                self.time.tolist(), current_composed_signal.tolist(), fmax)
 
     def getFmax(self, time, data):
         amplitude = np.fft.rfft(data)

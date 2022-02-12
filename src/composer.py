@@ -10,7 +10,9 @@ from pyqtgraph import PlotWidget, plot
 import numpy as np
 
 
+
 class Composer(qtw.QWidget):
+    moving_data_to_sampler = qtc.pyqtSignal(list, list, float)
     def __init__(self):
         super().__init__()
         self.time = np.linspace(0, 3, 1000)
@@ -30,10 +32,31 @@ class Composer(qtw.QWidget):
         self.AddWaveBtn.clicked.connect(self.addSinWave)
         self.DeleteButton.clicked.connect(self.deleteSinWave)
         self.SaveExampleButton.clicked.connect(self.saveExample)
+        self.StartSamplingButton.clicked.connect(self.startSampling)
 
     def saveExample(self):
         self.saved_example.append(self.composed_value)
         self.SavedExList.addItem(f'Example: {len(self.saved_example)}')
+
+    def startSampling(self):
+        index_of_example = self.SavedExList.currentIndex()
+        current_composed_signal = self.saved_example[index_of_example]
+        fmax = self.getFmax(self.time, current_composed_signal)
+        self.moving_data_to_sampler.emit(self.time.tolist(), current_composed_signal.tolist(), fmax)
+
+
+    def getFmax(self, time, data):
+        amplitude = np.fft.rfft(data)
+        frequency = np.fft.rfftfreq(len(data), (time[1] - time[0]))
+
+        fmax=0
+        for i, a in enumerate(amplitude):
+            if np.abs(a) > 5 : # (1)
+                fmax = frequency[i]
+        return fmax
+
+
+
 
 
 

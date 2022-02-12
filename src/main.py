@@ -15,7 +15,7 @@ class MainWindow(qtw.QMainWindow):
         self.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
         self.view_page = Page()
         self.centralWidget().layout().addWidget(self.view_page)
-
+        
 
 
 

@@ -83,6 +83,7 @@ class Sampler(qtw.QWidget):
             self.reconstruct_signal.show()
 
     def loadSignal(self):
+        self.original_signal.clear()
         self.loaded, name, (self.analog_time,
                             self.orignal_signal) = utils.open_csv(self)
         if self.loaded:

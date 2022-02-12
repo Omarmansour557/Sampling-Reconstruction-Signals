@@ -17,12 +17,10 @@ class Sampler(qtw.QWidget):
         self.ReconstructLayout.addWidget(self.reconstruct_signal)
         self.flag = True
 
-
         self.ToggleVisibilityBtn.clicked.connect(self.toggleVisibility)
         self.LoadButton.clicked.connect(self.loadSignal)
         self.SamplingSlider.valueChanged.connect(self.updateReconstruction)
         self.SamplingAutomatic.clicked.connect(self.startSamplingAutomatic)
-
 
         self.fmax = 0
         self.sampling_values = []
@@ -33,10 +31,11 @@ class Sampler(qtw.QWidget):
         self.loaded = False
 
     def updateReconstruction(self):
-        self.factor = self.SamplingSlider.value()/10
-        self.sampling_frequency = self.factor * self.fmax
-        self.SliderLabel.setText(f'{self.factor} fmax')
-        self.reconstructSignal(self.orignal_signal,
+        if(self.loaded):
+            self.factor = self.SamplingSlider.value()/10
+            self.sampling_frequency = self.factor * self.fmax
+            self.SliderLabel.setText(f'{self.factor} fmax')
+            self.reconstructSignal(self.orignal_signal,
                                self.analog_time, self.sampling_frequency)
 
     def startSamplingAutomatic(self):
@@ -82,7 +81,6 @@ class Sampler(qtw.QWidget):
             self.reconstruct_signal.hide()
         else:
             self.reconstruct_signal.show()
-            
 
     def loadSignal(self):
         self.loaded, name, (self.analog_time,
@@ -108,8 +106,8 @@ class Sampler(qtw.QWidget):
         self.reconstruct_signal.clear()
         self.original_signal.clear()
 
-    def plotAllSignals(self, resampled_original_signal, sampling_time, 
-                            sampling_values, analog_time, orignal_signal):
+    def plotAllSignals(self, resampled_original_signal, sampling_time,
+                       sampling_values, analog_time, orignal_signal):
         pen1 = pg.mkPen(color='r')
         self.reconstruct_signal.plot(
             analog_time, resampled_original_signal, name='omar', pen=pen1)
@@ -123,6 +121,6 @@ class Sampler(qtw.QWidget):
         frequency = np.fft.rfftfreq(len(data), (time[1] - time[0]))
         fmax = 0
         for i, a in enumerate(amplitude):
-            if np.abs(a) > 5:  
+            if np.abs(a) > 5:
                 fmax = frequency[i]
         return fmax

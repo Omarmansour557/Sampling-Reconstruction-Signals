@@ -35,8 +35,9 @@ class Composer(qtw.QWidget):
         self.StartSamplingButton.clicked.connect(self.startSampling)
 
     def saveExample(self):
-        self.saved_example.append(self.composed_value)
-        self.SavedExList.addItem(f'Example: {len(self.saved_example)}')
+        if(len(self.saved_example) > 0):
+            self.saved_example.append(self.composed_value)
+            self.SavedExList.addItem(f'Example: {len(self.saved_example)}')
 
     def startSampling(self):
         if(self.SavedExList.count() > 0):

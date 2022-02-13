@@ -2,6 +2,9 @@
 
 - [Sampling-Reconstruction-Signals](#sampling-reconstruction-signals)
   - [Features](#features)
+  - [Demos](#demos)
+    - [Reconstruction Demo](#reconstruction-demo)
+    - [Composer Demo](#composer-demo)
   - [Run-App](#run-app)
 
 ## Features
@@ -15,6 +18,19 @@
 - A combobox to select one of the contributing sinusoidals and remove it via a delete button.
 - After making a synthetic signal then moving it to the main illustrator graph to start the sampling/recovery process.
 
+## Demos
+
+### Reconstruction Demo 
+![volume](./docs/Sampler.gif)
+
+### Composer Demo
+![equalizer](./docs/Composer.gif)
+
+
+
+
+
+
 ## Run-App
 1. **_install project dependencies_**
 ```sh
@@ -23,3 +39,4 @@ pip install -r dependencies.txt
 2. **_Run the application_**
 ```sh
 python main.py
+

@@ -2,6 +2,7 @@
 
 - [Sampling-Reconstruction-Signals](#sampling-reconstruction-signals)
   - [Features](#features)
+  - [Run-App](#run-app)
 
 ## Features
 - Developing an illustrator for the signal recovery that shows Nyquist rate.
@@ -14,4 +15,11 @@
 - A combobox to select one of the contributing sinusoidals and remove it via a delete button.
 - After making a synthetic signal then moving it to the main illustrator graph to start the sampling/recovery process.
 
-
+## Run-App
+1. **_install project dependencies_**
+```sh
+pip install -r dependencies.txt
+```
+2. **_Run the application_**
+```sh
+python main.py

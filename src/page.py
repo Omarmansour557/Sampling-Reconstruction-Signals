@@ -20,6 +20,7 @@ class Page(qtw.QTabWidget):
         self.composer.moving_data_to_sampler.connect(self.startSampling)
 
     def startSampling(self, time, data, fmax):
+        self.sampler.original_signal.clear()
         self.sampler.loadSignalFromComposer(time, data, fmax)
         self.sampler.loaded = True
         self.setCurrentWidget(self.Sampling)

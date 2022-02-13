@@ -18,6 +18,7 @@ class Composer(qtw.QWidget):
         self.saved_example = []
         self.list_of_sinusoidals = []
         self.array_of_lines = []
+        self.composed_value = []
         uic.loadUi("src/ui/Composer.ui", self)
 
         self.component_graph = pg.PlotWidget()
@@ -35,7 +36,7 @@ class Composer(qtw.QWidget):
         self.StartSamplingButton.clicked.connect(self.startSampling)
 
     def saveExample(self):
-        if(len(self.saved_example) > 0):
+        if(len(self.composed_value) > 0):
             self.saved_example.append(self.composed_value)
             self.SavedExList.addItem(f'Example: {len(self.saved_example)}')
 

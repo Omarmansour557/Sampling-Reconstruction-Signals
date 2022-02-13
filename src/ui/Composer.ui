@@ -235,6 +235,18 @@
           </item>
           <item>
            <widget class="QComboBox" name="SavedExList">
+            <property name="minimumSize">
+             <size>
+              <width>171</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>3000</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>

@@ -109,13 +109,13 @@ class Sampler(qtw.QWidget):
 
     def plotAllSignals(self, resampled_original_signal, sampling_time,
                        sampling_values, analog_time, orignal_signal):
-        pen1 = pg.mkPen(color='r')
+        pen1 = pg.mkPen(color='purple')
         self.reconstruct_signal.plot(
-            analog_time, resampled_original_signal, name='omar', pen=pen1)
+            analog_time, resampled_original_signal, name='rec_signal', pen=pen1)
         self.plot(analog_time, orignal_signal)
-        pen3 = pg.mkPen(color='g', style=qtc.Qt.DashLine)
+        pen3 = pg.mkPen(color='purple', style=qtc.Qt.DashLine)
         self.original_signal.plot(
-            sampling_time, sampling_values, name='abosaied', pen=pen3, symbol='o', symbolSize=6)
+            sampling_time, sampling_values, name='original', pen=pen3, symbol='o', symbolSize=6)
 
     def getFmax(self, time, data):
         amplitude = np.fft.rfft(data)

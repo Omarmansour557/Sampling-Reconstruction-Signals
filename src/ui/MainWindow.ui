@@ -42,7 +42,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(164, 0, 0);</string>
+         <string notr="true">color: rgb(239, 41, 41);</string>
         </property>
         <property name="text">
          <string>Sampling &amp; Reconstruction</string>
